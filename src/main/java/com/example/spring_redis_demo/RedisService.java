@@ -70,4 +70,15 @@ public class RedisService {
     public Long getTTL(String key) {
         return redisTemplate.getExpire(key);
     }
+
+    // 좋아요 increment, decrement
+    public Long likePost(String postId) {
+        String key = "like:count:" + postId;
+        return redisTemplate.opsForValue().increment(key);
+    }
+
+    public Long unlikePost(String postId) {
+        String key = "like:count:" + postId;
+        return redisTemplate.opsForValue().decrement(key);
+    }
 }

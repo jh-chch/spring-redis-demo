@@ -89,4 +89,18 @@ public class RedisController {
     public Long getTTL(@PathVariable String key) {
         return redisService.getTTL(key);
     }
+
+    // 특정 게시글(postId) 좋아요를 증가시킨다고 가정
+    // 회원당1회, redis에 없으면 db조회, 스케쥴링으로 모아놓고 DB에 저장하는 등.. 추가적인 부분은 생략
+    // key가 없으면 0 부터 증가된다.
+    @PostMapping("/like/{postId}")
+    public Long like(@PathVariable String postId) {
+        return redisService.likePost(postId);
+    }
+
+    @PostMapping("/unlike/{postId}")
+    public Long unlike(@PathVariable String postId) {
+        return redisService.unlikePost(postId);
+    }
+
 }

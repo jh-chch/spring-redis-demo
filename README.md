@@ -39,3 +39,8 @@ curl localhost:8080/redis/zset/leaderboard
 curl -X POST "localhost:8080/redis/string/tempKey/ttl?seconds=10" -H "Content-Type: text/plain" -d "temporary value"
 curl localhost:8080/redis/ttl/tempKey
 ```
+### increment, decrement
+```
+curl -X POST localhost:8080/redis/like/123
+curl -X POST localhost:8080/redis/unlike/123
+```
