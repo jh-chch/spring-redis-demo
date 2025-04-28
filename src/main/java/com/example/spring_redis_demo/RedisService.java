@@ -1,5 +1,6 @@
 package com.example.spring_redis_demo;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -59,5 +60,14 @@ public class RedisService {
 
     public Set<String> getZSet(String key) {
         return redisTemplate.opsForZSet().range(key, 0, -1);
+    }
+
+    // value TTL 설정
+    public void setValueWithTTL(String key, String value, long seconds) {
+        redisTemplate.opsForValue().set(key, value, Duration.ofSeconds(seconds));
+    }
+
+    public Long getTTL(String key) {
+        return redisTemplate.getExpire(key);
     }
 }

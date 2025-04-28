@@ -76,4 +76,17 @@ public class RedisController {
         return redisService.getZSet(key);
     }
 
+    // String 저장하면서 TTL 설정
+    @PostMapping("/string/{key}/ttl")
+    public void setValueWithTTL(@PathVariable String key,
+            @RequestParam long seconds,
+            @RequestBody String value) {
+        redisService.setValueWithTTL(key, value, seconds);
+    }
+
+    // TTL 조회
+    @GetMapping("/ttl/{key}")
+    public Long getTTL(@PathVariable String key) {
+        return redisService.getTTL(key);
+    }
 }
